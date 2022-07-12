@@ -23,17 +23,15 @@ class LoginController extends CI_Controller
 		if ($this->form_validation->run()) {
 			$email = $this->input->post('email');
 			$password = md5($this->input->post('password'));
+
 			$this->load->model('LoginModel');
 			$result = $this->LoginModel->checkLogin($email, $password);
+
 			if ($result) {
-				$session_array = [
-					'id' => $result[0]->id,
-					'username' => $result[0]->username,
-					'email' => $result[0]->email,
-				];
+				$session_array = ['id' => $result[0]->id, 'username' => $result[0]->username, 'email' => $result[0]->email,];
 				$this->session->set_userdata('loggedIn', $session_array);
 				$this->session->set_flashdata('success', 'Login Successfully');
-				redirect(base_url('login'));
+				redirect(base_url('/dashboard'));
 			} else {
 				$this->session->set_flashdata('error', 'Sai Email hoặc Password, Hãy đăng nhập lại');
 				redirect(base_url('login'));

@@ -15,14 +15,12 @@
 	<form action="<?php echo base_url('login-user') ?>" method="post">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Email address</label>
-			<input type="email" class="form-control" id="exampleInputEmail1"
-				   name="email">
+			<input type="email" class="form-control" id="exampleInputEmail1" name="email">
 			<?php echo form_error('email'); ?>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">Password</label>
-			<input type="password" class="form-control" id="exampleInputPassword1"
-				   name="password">
+			<input type="password" class="form-control" id="exampleInputPassword1" name="password">
 			<?php echo form_error('password'); ?>
 		</div>
 		<button type="submit" class="btn btn-primary">Login</button>
