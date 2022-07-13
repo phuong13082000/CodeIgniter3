@@ -10,9 +10,9 @@ class LoginController extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('template/header');
+		$this->load->view('admin_template/header');
 		$this->load->view('login/index_login');
-		$this->load->view('template/footer');
+		$this->load->view('admin_template/footer');
 	}
 
 	public function login()

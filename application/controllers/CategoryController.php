@@ -65,10 +65,10 @@ class CategoryController extends CI_Controller
 				$category_filename = $this->upload->data('file_name');
 				$data = [
 					'title' => $this->input->post('title'),
-					'slug_category' => $this->input->post('slug_category'),
 					'description' => $this->input->post('description'),
-					'status' => $this->input->post('status'),
 					'image' => $category_filename,
+					'status' => $this->input->post('status'),
+					'slug_category' => $this->input->post('slug_category'),
 				];
 				$this->load->model('CategoryModel');
 				$this->CategoryModel->insertCategory($data);
@@ -114,24 +114,24 @@ class CategoryController extends CI_Controller
 					$ImageError = array('error' => $this->upload->display_errors());
 					$this->load->view('admin_template/header');
 					$this->load->view('admin_template/navbar');
-					$this->load->view('category/create', $ImageError);
+					$this->load->view('category/edit', $ImageError);
 					$this->load->view('admin_template/footer');
 				} else {
-					$brand_filename = $this->upload->data('file_name');
+					$category_filename = $this->upload->data('file_name');
 					$data = [
 						'title' => $this->input->post('title'),
-						'slug_category' => $this->input->post('slug_category'),
 						'description' => $this->input->post('description'),
+						'image' => $category_filename,
 						'status' => $this->input->post('status'),
-						'image' => $brand_filename,
+						'slug_category' => $this->input->post('slug_category'),
 					];
 				}
 			} else {
 				$data = [
 					'title' => $this->input->post('title'),
-					'slug_category' => $this->input->post('slug_category'),
 					'description' => $this->input->post('description'),
 					'status' => $this->input->post('status'),
+					'slug_category' => $this->input->post('slug_category'),
 				];
 			}
 			$this->load->model('CategoryModel');

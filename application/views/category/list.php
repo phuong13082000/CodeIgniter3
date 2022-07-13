@@ -3,6 +3,14 @@
 		<div class="card-header">List</div>
 		<div class="card-body">
 			<a href="<?php echo base_url('category/create') ?>" class="btn btn-primary">Add</a>
+			<?php
+			//thong bao
+			if ($this->session->flashdata('success')) { ?>
+				<div class="alert alert-success"><?php echo $this->session->flashdata('success') ?></div>
+			<?php } else if ($this->session->flashdata('error')) { ?>
+				<div class="alert alert-danger"><?php echo $this->session->flashdata('error') ?></div>
+			<?php } ?>
+
 			<table class="table">
 				<thead>
 				<tr>

@@ -33,7 +33,9 @@ class BrandController extends CI_Controller
 		$this->checkLogin();
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
+
 		$this->load->view('brand/create');
+
 		$this->load->view('admin_template/footer');
 	}
 
@@ -42,6 +44,7 @@ class BrandController extends CI_Controller
 		$this->form_validation->set_rules('title', 'Title', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		$this->form_validation->set_rules('slug_brand', 'Slug', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		$this->form_validation->set_rules('description', 'Description', 'trim|required', ['required' => 'Bạn nên điền %s']);
+
 		if ($this->form_validation->run() == TRUE) {
 			//upload image
 			$ori_filename = $_FILES['image']['name'];
@@ -63,10 +66,10 @@ class BrandController extends CI_Controller
 				$brand_filename = $this->upload->data('file_name');
 				$data = [
 					'title' => $this->input->post('title'),
-					'slug_brand' => $this->input->post('slug_brand'),
 					'description' => $this->input->post('description'),
-					'status' => $this->input->post('status'),
+					'slug_brand' => $this->input->post('slug_brand'),
 					'image' => $brand_filename,
+					'status' => $this->input->post('status'),
 				];
 				$this->load->model('BrandModel');
 				$this->BrandModel->insertBrand($data);
@@ -112,23 +115,23 @@ class BrandController extends CI_Controller
 					$ImageError = array('error' => $this->upload->display_errors());
 					$this->load->view('admin_template/header');
 					$this->load->view('admin_template/navbar');
-					$this->load->view('brand/create', $ImageError);
+					$this->load->view('brand/edit', $ImageError);
 					$this->load->view('admin_template/footer');
 				} else {
 					$brand_filename = $this->upload->data('file_name');
 					$data = [
 						'title' => $this->input->post('title'),
-						'slug_brand' => $this->input->post('slug_brand'),
 						'description' => $this->input->post('description'),
-						'status' => $this->input->post('status'),
+						'slug_brand' => $this->input->post('slug_brand'),
 						'image' => $brand_filename,
+						'status' => $this->input->post('status'),
 					];
 				}
 			} else {
 				$data = [
 					'title' => $this->input->post('title'),
-					'slug_brand' => $this->input->post('slug_brand'),
 					'description' => $this->input->post('description'),
+					'slug_brand' => $this->input->post('slug_brand'),
 					'status' => $this->input->post('status'),
 				];
 			}
@@ -141,7 +144,8 @@ class BrandController extends CI_Controller
 		}
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$this->load->model('BrandModel');
 		$this->BrandModel->deleteBrand($id);
 		$this->session->set_flashdata('success', 'Delete Success Brand');
