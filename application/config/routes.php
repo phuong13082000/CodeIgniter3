@@ -6,16 +6,12 @@ $route['default_controller'] = 'IndexController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['dang-nhap'] = 'IndexController/login';
-$route['checkout'] = 'IndexController/checkout';
-$route['error'] = 'IndexController/error';
-$route['blog'] = 'IndexController/blog';
-$route['blog-single'] = 'IndexController/blogSingle';
-$route['cart'] = 'IndexController/cart';
-$route['contact-us'] = 'IndexController/contactUs';
-$route['product-details'] = 'IndexController/productDetails';
-$route['send-email'] = 'IndexController/sendMail';
-$route['shop'] = 'IndexController/shop';
+//user
+$route['danh-muc/(:any)']['GET'] = 'IndexController/category/$1';
+$route['thuong-hieu/(:any)']['GET'] = 'IndexController/brand/$1';
+$route['san-pham/(:any)']['GET'] = 'IndexController/product/$1';
+$route['dang-nhap']['GET'] = 'IndexController/login';
+$route['cart']['GET'] = 'IndexController/cart';
 
 //login admin
 $route['login']['GET'] = 'LoginController/index';
