@@ -18,6 +18,7 @@
 					<th scope="col">Title</th>
 					<th scope="col">Slug</th>
 					<th scope="col">Description</th>
+					<th scope="col">Price</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Brand</th>
 					<th scope="col">Category</th>
@@ -35,6 +36,7 @@
 						<td><?php echo $prod->title ?></td>
 						<td><?php echo $prod->slug_product ?></td>
 						<td><?php echo $prod->description ?></td>
+						<td><?php echo number_format($prod->price,0,',','.')?> VND</td>
 						<td><?php echo $prod->quantity ?></td>
 						<td><?php echo $prod->tenthuonghieu ?></td>
 						<td><?php echo $prod->tendanhmuc ?></td>

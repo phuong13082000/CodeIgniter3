@@ -63,14 +63,16 @@
 					</div>
 					<div class="mainmenu pull-left">
 						<ul class="nav navbar-nav collapse navbar-collapse">
-							<li><a href="/" class="active">Home</a></li>
+							<li><a href="<?php echo base_url('/') ?>" class="active">Home</a></li>
 							<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
-									<li><a href="/shop">Products</a></li>
-									<li><a href="/product-details">Product Details</a></li>
-									<li><a href="/checkout">Checkout</a></li>
-									<li><a href="/cart">Cart</a></li>
-									<li><a href="/dang-nhap">Login</a></li>
+									<?php
+									foreach ($category as $key => $cate) {
+										?>
+										<li><a href="<?php echo base_url('danh-muc/'.$cate->id) ?>"><?php echo $cate->title ?></a></li>
+										<?php
+									}
+									?>
 								</ul>
 							</li>
 							<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>

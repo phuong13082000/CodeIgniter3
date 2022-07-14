@@ -14,33 +14,39 @@ class IndexController extends CI_Controller
 
 	public function index()
 	{
+		$this->data['allProduct'] = $this->IndexModel->getAllProduct();
 		$this->load->view('pages/template/header', $this->data);
-		$this->load->view('pages/template/navbar');
-		$this->load->view('layout');
+		$this->load->view('pages/template/navbar', $this->data);
+		$this->load->view('pages/layout', $this->data);
 		$this->load->view('pages/template/footer');
 	}
 
 	public function category($id)
 	{
-		$this->load->view('pages/template/header');
-		$this->load->view('pages/template/navbar');
-		$this->load->view('category');
+		$this->data['categoryProduct'] = $this->IndexModel->getCategoryProduct($id);
+		$this->data['title'] = $this->IndexModel->getCategoryTitle($id);
+		$this->load->view('pages/template/header', $this->data);
+		$this->load->view('pages/template/navbar', $this->data);
+		$this->load->view('pages/category', $this->data);
 		$this->load->view('pages/template/footer');
 	}
 
 	public function brand($id)
 	{
-		$this->load->view('pages/template/header');
-		$this->load->view('pages/template/navbar');
-		$this->load->view('brand');
+		$this->data['brandProduct'] = $this->IndexModel->getBrandProduct($id);
+		$this->data['title'] = $this->IndexModel->getBrandTitle($id);
+		$this->load->view('pages/template/header', $this->data);
+		$this->load->view('pages/template/navbar', $this->data);
+		$this->load->view('pages/brand', $this->data);
 		$this->load->view('pages/template/footer');
 	}
 
 	public function product($id)
 	{
-		$this->load->view('pages/template/header');
-		$this->load->view('pages/template/navbar');
-		$this->load->view('product_details');
+		$this->data['product_details'] = $this->IndexModel->getProductDetails($id);
+		$this->load->view('pages/template/header', $this->data);
+		$this->load->view('pages/template/navbar', $this->data);
+		$this->load->view('pages/product-details', $this->data);
 		$this->load->view('pages/template/footer');
 	}
 
@@ -48,7 +54,7 @@ class IndexController extends CI_Controller
 	{
 		$this->load->view('pages/template/header');
 		$this->load->view('pages/template/navbar');
-		$this->load->view('login');
+		$this->load->view('pages/login');
 		$this->load->view('pages/template/footer');
 	}
 
@@ -56,7 +62,7 @@ class IndexController extends CI_Controller
 	{
 		$this->load->view('pages/template/header');
 		$this->load->view('pages/template/navbar');
-		$this->load->view('cart');
+		$this->load->view('pages/cart');
 		$this->load->view('pages/template/footer');
 	}
 }

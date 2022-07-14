@@ -52,6 +52,7 @@ class ProductController extends CI_Controller
 		$this->form_validation->set_rules('slug_product', 'Slug', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		$this->form_validation->set_rules('description', 'Description', 'trim|required', ['required' => 'Bạn nên điền %s']);
+		$this->form_validation->set_rules('price', 'Price', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		if ($this->form_validation->run() == TRUE) {
 			//upload image
 			$ori_filename = $_FILES['image']['name'];
@@ -80,6 +81,7 @@ class ProductController extends CI_Controller
 					'category_id' => $this->input->post('category_id'),
 					'brand_id' => $this->input->post('brand_id'),
 					'quantity' => $this->input->post('quantity'),
+					'price' => $this->input->post('price'),
 				];
 				$this->load->model('ProductModel');
 				$this->ProductModel->insertProduct($data);
@@ -119,6 +121,7 @@ class ProductController extends CI_Controller
 		$this->form_validation->set_rules('slug_product', 'Slug', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		$this->form_validation->set_rules('description', 'Description', 'trim|required', ['required' => 'Bạn nên điền %s']);
+		$this->form_validation->set_rules('price', 'Price', 'trim|required', ['required' => 'Bạn nên điền %s']);
 		if ($this->form_validation->run() == TRUE) {
 			if (!empty($_FILES['image']['name'])) {
 				//upload image
@@ -148,6 +151,7 @@ class ProductController extends CI_Controller
 						'category_id' => $this->input->post('category_id'),
 						'brand_id' => $this->input->post('brand_id'),
 						'quantity' => $this->input->post('quantity'),
+						'price' => $this->input->post('price'),
 					];
 				}
 			} else {
@@ -159,6 +163,7 @@ class ProductController extends CI_Controller
 					'category_id' => $this->input->post('category_id'),
 					'brand_id' => $this->input->post('brand_id'),
 					'quantity' => $this->input->post('quantity'),
+					'price' => $this->input->post('price'),
 				];
 			}
 			$this->load->model('ProductModel');

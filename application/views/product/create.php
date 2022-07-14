@@ -31,6 +31,12 @@
 				</div>
 
 				<div class="form-group">
+					<label for="exampleInputPassword1">Price</label>
+					<input type="number" name="price" class="form-control" id="exampleInputPassword1">
+					<?php echo form_error('price') ?>
+				</div>
+
+				<div class="form-group">
 					<label for="exampleInputPassword1">Quantity</label>
 					<input type="text" name="quantity" class="form-control" id="exampleInputPassword1">
 					<?php echo form_error('quantity') ?>
