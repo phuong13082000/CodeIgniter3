@@ -31,7 +31,7 @@
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="logo pull-left">
-						<a href="/"><img src="./frontend/images/home/logo.png" alt=""/></a>
+						<a href="/"><img src="<?php echo base_url('./frontend/images/home/logo.png') ?>" alt=""/></a>
 					</div>
 				</div>
 				<div class="col-sm-8">
@@ -40,7 +40,7 @@
 							<li><a href="/tai-khoan"><i class="fa fa-user"></i> Account</a></li>
 							<li><a href="/wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
 							<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-							<li><a href="/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+							<li><a href="<?php echo base_url('/gio-hang') ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 							<li><a href="/dang-nhap"><i class="fa fa-lock"></i> Login</a></li>
 						</ul>
 					</div>

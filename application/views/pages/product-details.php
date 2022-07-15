@@ -11,7 +11,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a href="<?php echo base_url('danh-muc/'.$cate->id) ?>"><?php echo $cate->title ?></a>
+										<a href="<?php echo base_url('danh-muc/' . $cate->id) ?>"><?php echo $cate->title ?></a>
 									</h4>
 								</div>
 							</div>
@@ -27,7 +27,9 @@
 								<?php
 								foreach ($brand as $key => $bra) {
 									?>
-									<li><a href="<?php echo base_url('thuong-hieu/'.$bra->id) ?>"><?php echo $bra->title ?></a></li>
+									<li>
+										<a href="<?php echo base_url('thuong-hieu/' . $bra->id) ?>"><?php echo $bra->title ?></a>
+									</li>
 									<?php
 								}
 								?>
@@ -44,43 +46,46 @@
 					</div><!--/price-range-->
 
 					<div class="shipping text-center"><!--shipping-->
-						<img src="./frontend/images/home/shipping.jpg" alt=""/>
+						<img src="<?php echo base_url('./frontend/images/home/shipping.jpg') ?>" alt=""/>
 					</div><!--/shipping-->
 
 				</div>
 			</div>
 
 			<div class="col-sm-9 padding-right">
-				<?php foreach ($product_details as $key => $pro){ ?>
-				<div class="product-details"><!--product-details-->
-					<div class="col-sm-5">
-						<div class="view-product">
-							<img src="<?php echo base_url('uploads/product/'.$pro->image) ?>" alt="<?php echo $pro->title ?>"/>
+				<?php foreach ($product_details as $key => $pro) { ?>
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="<?php echo base_url('uploads/product/' . $pro->image) ?>" alt="<?php echo $pro->title ?>"/>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="product-information"><!--/product-information-->
-							<img src="images/product-details/new.jpg" class="newarrival" alt=""/>
-							<h2><?php echo $pro->title ?></h2>
-							<img src="images/product-details/rating.png" alt=""/>
-							<span>
-									<span><?php echo number_format($pro->price,0,',','.')?> VND</span><br>
-									<label>Quantity: <?php echo $pro->quantity ?></label>
-									<input type="text" value=""/>
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
-								</span>
-							<p><b>Availability:</b> In Stock</p>
-							<p><b>Condition:</b> New</p>
-							<p><b>Brand: </b><?php echo $pro->tenthuonghieu ?></p>
-							<p><b>Category: </b><?php echo $pro->tendanhmuc ?></p>
-							<a href=""><img src="images/product-details/share.png" class="share img-responsive" alt=""/></a>
-						</div><!--/product-information-->
-					</div>
-				</div><!--/product-details-->
+
+						<form action="<?php echo base_url('add-to-cart') ?>" method="POST">
+							<div class="col-sm-7">
+								<div class="product-information"><!--/product-information-->
+									<img src="<?php echo base_url('./frontend/images/product-details/new.jpg') ?>" class="newarrival" alt=""/>
+									<h2><?php echo $pro->title ?></h2>
+									<input type="hidden" value="<?php echo $pro->id ?>" name="product_id">
+									<img src="<?php echo base_url('./frontend/images/product-details/rating.png') ?>" alt=""/><br>
+									<span>
+										<span><?php echo number_format($pro->price, 0, ',', '.') ?> VND</span><br>
+										<label>Quantity: <?php echo $pro->quantity ?></label>
+										<input type="number" min="1" value="1" name="quantity">
+										<button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+									</span>
+									<p><b>Availability:</b> In Stock</p>
+									<p><b>Condition:</b> New</p>
+									<p><b>Brand: </b><?php echo $pro->tenthuonghieu ?></p>
+									<p><b>Category: </b><?php echo $pro->tendanhmuc ?></p>
+									<a href=""><img src="<?php echo base_url('./frontend/images/product-details/share.png') ?>" class="share img-responsive" alt=""/></a>
+								</div><!--/product-information-->
+							</div>
+						</form>
+
+					</div><!--/product-details-->
 				<?php } ?>
+
 				<div class="category-tab shop-details-tab"><!--category-tab-->
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs">
@@ -96,49 +101,7 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="images/home/gallery1.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery2.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery3.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery4.jpg" alt=""/>
+											<img src="<?php echo base_url('./frontend/images/home/gallery1.jpg') ?>" alt=""/>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
 											<button type="button" class="btn btn-default add-to-cart">
@@ -155,49 +118,7 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="images/home/gallery1.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery3.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery2.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery4.jpg" alt=""/>
+											<img src="<?php echo base_url('./frontend/images/home/gallery1.jpg') ?>" alt=""/>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
 											<button type="button" class="btn btn-default add-to-cart">
@@ -214,49 +135,7 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="images/home/gallery1.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery2.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery3.jpg" alt=""/>
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart">
-												<i class="fa fa-shopping-cart"></i>Add to cart
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/gallery4.jpg" alt=""/>
+											<img src="<?php echo base_url('./frontend/images/home/gallery1.jpg') ?>" alt=""/>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
 											<button type="button" class="btn btn-default add-to-cart">
@@ -288,7 +167,7 @@
 											<input type="email" placeholder="Email Address"/>
 										</span>
 									<textarea name=""></textarea>
-									<b>Rating: </b> <img src="images/product-details/rating.png" alt=""/>
+									<b>Rating: </b> <img src="<?php echo base_url('./frontend/images/product-details/rating.png') ?>" alt=""/>
 									<button type="button" class="btn btn-default pull-right">
 										Submit
 									</button>
@@ -309,35 +188,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/recommend1.jpg" alt=""/>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart">
-													<i class="fa fa-shopping-cart"></i>Add to cart
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/recommend2.jpg" alt=""/>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart">
-													<i class="fa fa-shopping-cart"></i>Add to cart
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/recommend3.jpg" alt=""/>
+												<img src="<?php echo base_url('./frontend/images/home/recommend1.jpg') ?>" alt=""/>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<button type="button" class="btn btn-default add-to-cart">
@@ -353,35 +204,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/recommend1.jpg" alt=""/>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart">
-													<i class="fa fa-shopping-cart"></i>Add to cart
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/recommend2.jpg" alt=""/>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart">
-													<i class="fa fa-shopping-cart"></i>Add to cart
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/recommend3.jpg" alt=""/>
+												<img src="<?php echo base_url('./frontend/images/home/recommend1.jpg') ?>" alt=""/>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<button type="button" class="btn btn-default add-to-cart">

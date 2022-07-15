@@ -1628,6 +1628,7 @@ h2.title {
 .cart_product {
   display: block;
   margin: 15px -70px 10px 25px;
+	width: 150px;
 }
 
 .cart_quantity_button a {
@@ -1638,7 +1639,7 @@ h2.title {
   height: 28px;
   overflow: hidden;
   text-align: center;
-  width: 35px;
+  width: 50px;
   float: left;
 }
 
@@ -1649,7 +1650,7 @@ h2.title {
   font-size: 16px;
   text-align: center;
   font-family: 'Roboto',sans-serif;
-  
+  width: 50px;
 }
 
 

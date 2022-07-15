@@ -77,6 +77,18 @@ class IndexModel extends CI_Model
 			->get();
 		return $query->result();
 	}
+
+	public function selectProductCartById($product_id)
+	{
+		$query = $this->db->select('category.title as tendanhmuc, product.*, brand.title as tenthuonghieu')
+			->from('category')
+			->join('product', 'product.category_id=category.id')
+			->join('brand', 'brand.id=product.brand_id')
+			->where('product.id', $product_id)
+			->where('product.status', 1)
+			->get();
+		return $query->result();
+	}
 }
 
 
