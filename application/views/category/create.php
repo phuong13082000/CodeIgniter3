@@ -25,8 +25,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="exampleInputPassword1">Description</label>
-					<input type="text" name="description" class="form-control" id="exampleInputPassword1">
+					<label for="desc_category">Description</label>
+					<input type="text" name="description" class="form-control" id="desc_category">
 					<?php echo form_error('description') ?>
 				</div>
 

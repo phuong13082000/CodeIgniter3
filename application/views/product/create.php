@@ -25,8 +25,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="exampleInputPassword1">Description</label>
-					<input type="text" name="description" class="form-control" id="exampleInputPassword1">
+					<label for="desc_product">Description</label>
+					<input type="text" name="description" class="form-control" id="desc_product">
 					<?php echo form_error('description') ?>
 				</div>
 
@@ -38,7 +38,7 @@
 
 				<div class="form-group">
 					<label for="exampleInputPassword1">Quantity</label>
-					<input type="text" name="quantity" class="form-control" id="exampleInputPassword1">
+					<input type="number" name="quantity" class="form-control" id="exampleInputPassword1">
 					<?php echo form_error('quantity') ?>
 				</div>
 

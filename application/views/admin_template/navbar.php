@@ -1,55 +1,153 @@
-<div class="container">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">Admin</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="<?php echo base_url('dashboard') ?>">Home
-						<span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<?php echo $this->session->userdata('loggedIn')['username']; ?>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="<?php echo base_url('logout') ?>">Logout</a>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Brand
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="<?php echo base_url('brand/create') ?>">Add Brand</a>
-						<a class="dropdown-item" href="<?php echo base_url('brand/list') ?>">List Brand</a>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Category
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="<?php echo base_url('category/create') ?>">Add Category</a>
-						<a class="dropdown-item" href="<?php echo base_url('category/list') ?>">List Category</a>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Product
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="<?php echo base_url('product/create') ?>">Add Product</a>
-						<a class="dropdown-item" href="<?php echo base_url('product/list') ?>">List Product</a>
-					</div>
-				</li>
-			</ul>
+<body>
+<div class="container-fluid position-relative d-flex p-0">
+	<!-- Spinner Start -->
+	<div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+		<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+			<span class="sr-only">Loading...</span>
 		</div>
-	</nav>
-</div>
+	</div>
+	<!-- Spinner End -->
+
+
+	<!-- Sidebar Start -->
+	<div class="sidebar pe-4 pb-3">
+		<nav class="navbar bg-secondary navbar-dark">
+			<a href="<?php echo base_url('/') ?>" class="navbar-brand mx-4 mb-3">
+				<h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+			</a>
+			<div class="d-flex align-items-center ms-4 mb-4">
+				<div class="position-relative">
+					<img class="rounded-circle" src="<?php echo base_url('./backend/img/user.jpg') ?>" alt="" style="width: 40px; height: 40px;">
+					<div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+				</div>
+				<div class="ms-3">
+					<h6 class="mb-0"><?php echo $this->session->userdata('loggedIn')['username']; ?></h6>
+					<span>Admin</span>
+				</div>
+			</div>
+			<div class="navbar-nav w-100">
+				<a href="<?php echo base_url('dashboard') ?>" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Brand</a>
+					<div class="dropdown-menu bg-transparent border-0">
+						<a href="<?php echo base_url('brand/create') ?>" class="dropdown-item">Create</a>
+						<a href="<?php echo base_url('brand/list') ?>" class="dropdown-item">List</a>
+					</div>
+				</div>
+
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Category</a>
+					<div class="dropdown-menu bg-transparent border-0">
+						<a href="<?php echo base_url('category/create') ?>" class="dropdown-item">Create</a>
+						<a href="<?php echo base_url('category/list') ?>" class="dropdown-item">List</a>
+					</div>
+				</div>
+
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Product</a>
+					<div class="dropdown-menu bg-transparent border-0">
+						<a href="<?php echo base_url('product/create') ?>" class="dropdown-item">Create</a>
+						<a href="<?php echo base_url('product/list') ?>" class="dropdown-item">List</a>
+					</div>
+				</div>
+
+			</div>
+		</nav>
+	</div>
+	<!-- Sidebar End -->
+
+	<!-- Content Start -->
+	<div class="content">
+		<!-- Navbar Start -->
+		<nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+			<a href="<?php echo base_url('/') ?>" class="navbar-brand d-flex d-lg-none me-4">
+				<h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+			</a>
+			<a href="#" class="sidebar-toggler flex-shrink-0">
+				<i class="fa fa-bars"></i>
+			</a>
+			<form class="d-none d-md-flex ms-4">
+				<input class="form-control bg-dark border-0" type="search" placeholder="Search">
+			</form>
+			<div class="navbar-nav align-items-center ms-auto">
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+						<i class="fa fa-envelope me-lg-2"></i>
+						<span class="d-none d-lg-inline-flex">Message</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+						<a href="#" class="dropdown-item">
+							<div class="d-flex align-items-center">
+								<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+								<div class="ms-2">
+									<h6 class="fw-normal mb-0">Jhon send you a message</h6>
+									<small>15 minutes ago</small>
+								</div>
+							</div>
+						</a>
+						<hr class="dropdown-divider">
+						<a href="#" class="dropdown-item">
+							<div class="d-flex align-items-center">
+								<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+								<div class="ms-2">
+									<h6 class="fw-normal mb-0">Jhon send you a message</h6>
+									<small>15 minutes ago</small>
+								</div>
+							</div>
+						</a>
+						<hr class="dropdown-divider">
+						<a href="#" class="dropdown-item">
+							<div class="d-flex align-items-center">
+								<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+								<div class="ms-2">
+									<h6 class="fw-normal mb-0">Jhon send you a message</h6>
+									<small>15 minutes ago</small>
+								</div>
+							</div>
+						</a>
+						<hr class="dropdown-divider">
+						<a href="#" class="dropdown-item text-center">See all message</a>
+					</div>
+				</div>
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+						<i class="fa fa-bell me-lg-2"></i>
+						<span class="d-none d-lg-inline-flex">Notificatin</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+						<a href="#" class="dropdown-item">
+							<h6 class="fw-normal mb-0">Profile updated</h6>
+							<small>15 minutes ago</small>
+						</a>
+						<hr class="dropdown-divider">
+						<a href="#" class="dropdown-item">
+							<h6 class="fw-normal mb-0">New user added</h6>
+							<small>15 minutes ago</small>
+						</a>
+						<hr class="dropdown-divider">
+						<a href="#" class="dropdown-item">
+							<h6 class="fw-normal mb-0">Password changed</h6>
+							<small>15 minutes ago</small>
+						</a>
+						<hr class="dropdown-divider">
+						<a href="#" class="dropdown-item text-center">See all notifications</a>
+					</div>
+				</div>
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+						<img class="rounded-circle me-lg-2" src="<?php echo base_url('./backend/img/user.jpg') ?>" alt="" style="width: 40px; height: 40px;">
+						<span class="d-none d-lg-inline-flex">
+							<?php echo $this->session->userdata('loggedIn')['username']; ?>
+						</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+						<a href="#" class="dropdown-item">My Profile</a>
+						<a href="#" class="dropdown-item">Settings</a>
+						<a href="<?php echo base_url('logout') ?>" class="dropdown-item">Log Out</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- Navbar End -->
+

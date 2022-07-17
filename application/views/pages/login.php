@@ -4,13 +4,28 @@
 			<div class="col-sm-4 col-sm-offset-1">
 				<div class="login-form"><!--login form-->
 					<h2>Login to your account</h2>
-					<form action="#">
-						<input type="text" placeholder="Name"/>
-						<input type="email" placeholder="Email Address"/>
+					<?php
+					//thong bao
+					if ($this->session->flashdata('success')) {
+						?>
+						<div class="alert alert-success"><?php echo $this->session->flashdata('success') ?></div>
+						<?php
+					} else if ($this->session->flashdata('error')) {
+						?>
+						<div class="alert alert-danger"><?php echo $this->session->flashdata('error') ?></div>
+						<?php
+					}
+					?>
+					<form action="<?php echo base_url('login-customer') ?>" method="POST">
+						<input type="email" name="email" placeholder="Email Address"/>
+						<?php echo form_error('email'); ?>
+
+						<input type="password" name="password" placeholder="Password"/>
+						<?php echo form_error('password'); ?>
+
 						<span>
-								<input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
+							<input type="checkbox" class="checkbox">Keep me signed in
+						</span>
 						<button type="submit" class="btn btn-default">Login</button>
 					</form>
 				</div><!--/login form-->

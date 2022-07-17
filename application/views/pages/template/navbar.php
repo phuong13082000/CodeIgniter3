@@ -37,11 +37,15 @@
 				<div class="col-sm-8">
 					<div class="shop-menu pull-right">
 						<ul class="nav navbar-nav">
-							<li><a href="/tai-khoan"><i class="fa fa-user"></i> Account</a></li>
-							<li><a href="/wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-							<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-							<li><a href="<?php echo base_url('/gio-hang') ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-							<li><a href="/dang-nhap"><i class="fa fa-lock"></i> Login</a></li>
+							<?php if ($this->session->userdata('LoggedInCustomer')) { ?>
+								<li><a href="/tai-khoan"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="/wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
+								<li><a href="<?php echo base_url('/order-cart') ?>"><i class="fa fa-crosshairs"></i>Checkout</a></li>
+								<li><a href="<?php echo base_url('/dang-xuat') ?>"><i class="fa fa-lock"></i> Logout</a></li>
+							<?php } else { ?>
+								<li><a href="<?php echo base_url('/dang-nhap') ?>"><i class="fa fa-lock"></i> Login</a></li>
+							<?php } ?>
+							<li><a href="<?php echo base_url('/gio-hang') ?>"><i class="fa fa-shopping-cart"></i>Cart</a></li>
 						</ul>
 					</div>
 				</div>
@@ -69,7 +73,9 @@
 									<?php
 									foreach ($category as $key => $cate) {
 										?>
-										<li><a href="<?php echo base_url('danh-muc/'.$cate->id) ?>"><?php echo $cate->title ?></a></li>
+										<li>
+											<a href="<?php echo base_url('danh-muc/' . $cate->id) ?>"><?php echo $cate->title ?></a>
+										</li>
 										<?php
 									}
 									?>

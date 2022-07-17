@@ -15,3 +15,9 @@ frontend
 	shop
 	send-email
 
+third-party / plugin
+	ckeditor 4.19.0
+	jQuery 3.4.1
+	backend bootstrap 5
+	frontend bootstrap 3
+	changeToSlug

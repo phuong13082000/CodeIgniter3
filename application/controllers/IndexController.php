@@ -106,22 +106,65 @@ class IndexController extends CI_Controller
 			}
 		}
 		$this->cart->update($data);
-		redirect(base_url() . 'gio-hang', 'refresh');
+		//redirect(base_url() . 'gio-hang', 'refresh');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	public function order_cart()
 	{
-		$this->load->view('pages/template/header', $this->data);
-		$this->load->view('pages/template/navbar', $this->data);
-		$this->load->view('pages/checkout');
-		$this->load->view('pages/template/footer');
+		if ($this->session->userdata('LoggedInCustomer')) {
+			$this->load->view('pages/template/header', $this->data);
+			$this->load->view('pages/template/navbar', $this->data);
+			$this->load->view('pages/checkout');
+			$this->load->view('pages/template/footer');
+		} else {
+			redirect(base_url() . 'gio-hang');
+		}
 	}
 
 	public function login()
 	{
-		$this->load->view('pages/template/header');
-		$this->load->view('pages/template/navbar');
+		$this->load->view('pages/template/header', $this->data);
+		$this->load->view('pages/template/navbar', $this->data);
 		$this->load->view('pages/login');
 		$this->load->view('pages/template/footer');
+	}
+
+	public function login_customer()
+	{
+		$this->form_validation->set_rules('email', 'Email', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Bạn nên cung cấp %s']);
+
+		if ($this->form_validation->run()) {
+			$email = $this->input->post('email');
+			$password = md5($this->input->post('password'));
+
+			$this->load->model('LoginModel');
+			$result = $this->LoginModel->checkLoginCustomer($email, $password);
+
+			if (count($result) > 0) {
+				$session_array = [
+					'id' => $result[0]->id,
+					'name' => $result[0]->name,
+					'email' => $result[0]->email,
+				];
+				$this->session->set_userdata('LoggedInCustomer', $session_array);
+				$this->session->set_flashdata('success', 'Login Successfully');
+				redirect(base_url('/order-cart'));
+			} else {
+				$this->session->set_flashdata('error', 'Sai Email hoặc Password, Hãy đăng nhập lại');
+				redirect(base_url('/dang-nhap'));
+			}
+		} else {
+			$this->login();
+		}
+	}
+
+	public function logout()
+	{
+		$this->session->unset_userdata('LoggedInCustomer');
+		$this->session->set_flashdata('success', 'Logout Successfully');
+		redirect(base_url('/dang-nhap'));
+
 	}
 }

@@ -10,7 +10,11 @@ $route['translate_uri_dashes'] = FALSE;
 $route['danh-muc/(:any)']['GET'] = 'IndexController/category/$1';
 $route['thuong-hieu/(:any)']['GET'] = 'IndexController/brand/$1';
 $route['san-pham/(:any)']['GET'] = 'IndexController/product/$1';
+
+//login user
 $route['dang-nhap']['GET'] = 'IndexController/login';
+$route['dang-xuat']['GET'] = 'IndexController/logout';
+$route['login-customer']['POST'] = 'IndexController/login_customer';
 
 //login admin
 $route['login']['GET'] = 'LoginController/index';
