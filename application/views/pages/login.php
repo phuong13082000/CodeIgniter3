@@ -36,10 +36,17 @@
 			<div class="col-sm-4">
 				<div class="signup-form"><!--sign up form-->
 					<h2>New User Signup!</h2>
-					<form action="#">
-						<input type="text" placeholder="Name"/>
-						<input type="email" placeholder="Email Address"/>
-						<input type="password" placeholder="Password"/>
+					<form action="<?php echo base_url('dang-ky') ?>" method="POST">
+						<input type="text" name="name" placeholder="Name"/>
+						<?php echo form_error('name'); ?>
+						<input type="text" name="phone" placeholder="Phone"/>
+						<?php echo form_error('phone'); ?>
+						<input type="text" name="address" placeholder="Address"/>
+						<?php echo form_error('address'); ?>
+						<input type="email" name="email" placeholder="Email Address"/>
+						<?php echo form_error('email'); ?>
+						<input type="password" name="password" placeholder="Password"/>
+						<?php echo form_error('password'); ?>
 						<button type="submit" class="btn btn-default">Signup</button>
 					</form>
 				</div><!--/sign up form-->

@@ -15,6 +15,7 @@ $route['san-pham/(:any)']['GET'] = 'IndexController/product/$1';
 $route['dang-nhap']['GET'] = 'IndexController/login';
 $route['dang-xuat']['GET'] = 'IndexController/logout';
 $route['login-customer']['POST'] = 'IndexController/login_customer';
+$route['dang-ky']['POST'] = 'IndexController/register';
 
 //login admin
 $route['login']['GET'] = 'LoginController/index';
@@ -54,5 +55,6 @@ $route['add-to-cart']['POST'] = 'IndexController/add_to_cart';
 $route['update-cart-item']['POST'] = 'IndexController/update_cart_item';
 $route['delete-cart/(:any)']['GET'] = 'IndexController/delete_cart/$1';
 $route['delete-all-cart']['GET'] = 'IndexController/delete_all_cart';
-$route['order-cart']['GET'] = 'IndexController/order_cart';
+$route['checkout']['GET'] = 'IndexController/checkout';
+$route['confirm-checkout']['POST'] = 'IndexController/confirm_checkout';
 

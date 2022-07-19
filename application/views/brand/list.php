@@ -14,7 +14,7 @@
 					<div class="alert alert-danger"><?php echo $this->session->flashdata('error') ?></div>
 				<?php } ?>
 				<div class="table-responsive">
-					<table class="table">
+					<table class="table" style="text-align: center">
 						<thead>
 						<tr>
 							<th scope="col">#</th>

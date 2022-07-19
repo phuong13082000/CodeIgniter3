@@ -110,9 +110,11 @@ class IndexController extends CI_Controller
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function order_cart()
+	public function checkout()
 	{
-		if ($this->session->userdata('LoggedInCustomer')) {
+		//đăng nhập
+		//có hàng hóa trong giỏ hàng
+		if ($this->session->userdata('LoggedInCustomer') && $this->cart->contents()) {
 			$this->load->view('pages/template/header', $this->data);
 			$this->load->view('pages/template/navbar', $this->data);
 			$this->load->view('pages/checkout');
@@ -130,6 +132,13 @@ class IndexController extends CI_Controller
 		$this->load->view('pages/template/footer');
 	}
 
+	public function logout()
+	{
+		$this->session->unset_userdata('LoggedInCustomer');
+		$this->session->set_flashdata('success', 'Logout Successfully');
+		redirect(base_url('/dang-nhap'));
+	}
+
 	public function login_customer()
 	{
 		$this->form_validation->set_rules('email', 'Email', 'required', ['required' => 'Bạn nên cung cấp %s']);
@@ -145,12 +154,13 @@ class IndexController extends CI_Controller
 			if (count($result) > 0) {
 				$session_array = [
 					'id' => $result[0]->id,
-					'name' => $result[0]->name,
+					'username' => $result[0]->name,
 					'email' => $result[0]->email,
 				];
+
 				$this->session->set_userdata('LoggedInCustomer', $session_array);
 				$this->session->set_flashdata('success', 'Login Successfully');
-				redirect(base_url('/order-cart'));
+				redirect(base_url('/checkout'));
 			} else {
 				$this->session->set_flashdata('error', 'Sai Email hoặc Password, Hãy đăng nhập lại');
 				redirect(base_url('/dang-nhap'));
@@ -160,11 +170,105 @@ class IndexController extends CI_Controller
 		}
 	}
 
-	public function logout()
+	public function register()
 	{
-		$this->session->unset_userdata('LoggedInCustomer');
-		$this->session->set_flashdata('success', 'Logout Successfully');
-		redirect(base_url('/dang-nhap'));
+		$this->form_validation->set_rules('name', 'Name', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('phone', 'Phone', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('address', 'Address', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('email', 'Email', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Bạn nên cung cấp %s']);
 
+		if ($this->form_validation->run()) {
+			$name = $this->input->post('name');
+			$phone = $this->input->post('phone');
+			$address = $this->input->post('address');
+			$email = $this->input->post('email');
+			$password = md5($this->input->post('password'));
+
+			$data = array(
+				'name' => $name,
+				'phone' => $phone,
+				'address' => $address,
+				'email' => $email,
+				'password' => $password,
+			);
+
+			$this->load->model('LoginModel');
+			$result = $this->LoginModel->newCustomer($data);
+
+			if ($result) {
+				$session_array = [
+					'username' => $name,
+					'email' => $email
+				];
+
+				$this->session->set_userdata('LoggedInCustomer', $session_array);
+				$this->session->set_flashdata('success', 'Login Successfully');
+				redirect(base_url('/checkout'));
+			} else {
+				$this->session->set_flashdata('error', 'Lỗi');
+				redirect(base_url('/dang-nhap'));
+			}
+		} else {
+			$this->login();
+		}
 	}
+
+	public function confirm_checkout()
+	{
+		$this->form_validation->set_rules('name', 'Name', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('phone', 'Phone', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('address', 'Address', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		$this->form_validation->set_rules('email', 'Email', 'required', ['required' => 'Bạn nên cung cấp %s']);
+		if ($this->form_validation->run() == TRUE) {
+			$name = $this->input->post('name');
+			$phone = $this->input->post('phone');
+			$address = $this->input->post('address');
+			$email = $this->input->post('email');
+			$shipping_method = $this->input->post('shipping_method');
+
+			$data = array(
+				'name' => $name,
+				'phone' => $phone,
+				'address' => $address,
+				'email' => $email,
+				'method' => $shipping_method,
+			);
+
+			$this->load->model('LoginModel');
+			$result = $this->LoginModel->newShipping($data);
+
+			if ($result) {
+				//order
+				$order_code = rand(00, 9999);
+				$data_order = array(
+					'order_code' => $order_code,
+					'shipping_id' => $result,
+					'status' => 1,
+				);
+				$insert_order = $this->LoginModel->insert_order($data_order);
+
+				//order details
+				foreach ($this->cart->contents() as $items) {
+					$data_order_details = array(
+						'order_code' => $order_code,
+						'product_id' => $items['id'],
+						'quantity' => $items['qty']
+					);
+					$insert_order_details = $this->LoginModel->insert_order_details($data_order_details);
+				}
+
+				$this->session->set_flashdata('success', 'Đặt hàng thành công!');
+				$this->cart->destroy();
+				redirect(base_url('/'));
+			} else {
+				$this->session->set_flashdata('error', 'Đặt hàng thất bại');
+				redirect(base_url('/checkout'));
+			}
+		} else {
+			$this->checkout();
+		}
+	}
+
+
 }

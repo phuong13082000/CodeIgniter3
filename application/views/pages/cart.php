@@ -70,7 +70,7 @@
 						</td>
 						<td>
 							<a href="<?php echo base_url('delete-all-cart') ?>" class="btn btn-primary">Delete all</a>
-							<a href="<?php echo base_url('order-cart') ?>" class="btn btn-primary">Pay</a>
+							<a href="<?php echo base_url('checkout') ?>" class="btn btn-primary">Pay</a>
 						</td>
 					</tr>
 

@@ -10,25 +10,37 @@
 		<div class="container">
 			<div class="row">
 				<div class="review-payment">
+					<?php
+					//thong bao
+					if ($this->session->flashdata('success')) { ?>
+						<div class="alert alert-success"><?php echo $this->session->flashdata('success') ?></div>
+					<?php } else if ($this->session->flashdata('error')) { ?>
+						<div class="alert alert-danger"><?php echo $this->session->flashdata('error') ?></div>
+					<?php } ?>
+
 					<h2>Thông tin thanh toán</h2>
 				</div>
 				<div class="col-sm-10 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<form onsubmit="return confirm('Xác nhận đặt hàng')" method="POST" action="#">
+						<form onsubmit="return confirm('Xác nhận đặt hàng')" method="POST" action="<?php echo base_url('confirm-checkout') ?>">
 							<lable>Name
 								<input type="text" name="name" placeholder="Name"/>
+								<?php echo form_error('name'); ?>
 							</lable>
 							<lable>Address
 								<input type="text" name="address" placeholder="Address"/>
+								<?php echo form_error('address'); ?>
 							</lable>
 							<lable>Phone
 								<input type="text" name="phone" placeholder="Phone"/>
+								<?php echo form_error('phone'); ?>
 							</lable>
 							<lable>Email
 								<input type="email" name="email" placeholder="Email"/>
+								<?php echo form_error('email'); ?>
 							</lable>
 							<lable>Hình thức thanh toán
-								<select name="hinhthucthanhtoan">
+								<select name="shipping_method">
 									<option value="cod">COD</option>
 									<option value="vnpay">VNPAY</option>
 								</select>

@@ -6,7 +6,6 @@
 				<div style="text-align: right">
 					<a href="<?php echo base_url('brand/list') ?>" class="btn btn-outline-primary">List</a>
 				</div>
-				<br><br>
 				<?php
 				//thong bao
 				if ($this->session->flashdata('success')) { ?>
