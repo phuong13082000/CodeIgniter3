@@ -27,3 +27,4 @@ third-party / plugin
 	changeToSlug (script)
 
 database chỉnh trong application/config/...
+chạy local :  php -S localhost:8000 
