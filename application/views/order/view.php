@@ -23,7 +23,6 @@
 							<th scope="col">Product Price</th>
 							<th scope="col">Quantity</th>
 							<th scope="col">SubTotal</th>
-							<th scope="col">Manage</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -37,28 +36,45 @@
 								<td>
 									<img src="<?php echo base_url('uploads/product/' . $ord->image) ?>" width="150" height="150" alt="">
 								</td>
-								<td><?php echo number_format($ord->price,0,',','.');?> VND</td>
+								<td><?php echo number_format($ord->price, 0, ',', '.'); ?> VND</td>
 								<td><?php echo $ord->qty ?></td>
-								<td><?php echo number_format($ord->qty * $ord->price,0,',','.');?> VND</td>
-								<td>
-									<?php
-									if ($ord->status == 1) {
-										echo '<span class="text text-primary">Đang chờ xử lý</span>';
-									} else if ($ord->status == 2) {
-										echo '<span class="text text-success">Đã giao hàng</span>';
-									} else {
-										echo '<span class="text text-danger">Đã hủy</span>';
-									}
-									?>
-								</td>
-								<td>
-									<a onclick="return confirm('Are you sure?')" href="<?php echo base_url('order/delete/' . $ord->id) ?>" class="btn btn-danger">Delete</a>
-									<a href="<?php echo base_url('order/edit/' . $ord->order_code) ?>" class="btn btn-warning">View</a>
-								</td>
+								<td><?php echo number_format($ord->qty * $ord->price, 0, ',', '.'); ?> VND</td>
+
 							</tr>
 							<?php
 						}
 						?>
+						<tr>
+							<td colspan="7">
+								<select class="xulydonhang form-select mb-3">
+									<?php
+									if ($ord->order_status == 1) {
+										?>
+										<option selected id="<?php echo $ord->order_code ?>" value="0">Xử lý đơn hàng
+										</option>
+										<option id="<?php echo $ord->order_code ?>" value="2">Đơn hàng đã được xử lý - Đang giao hàng
+										</option>
+										<option id="<?php echo $ord->order_code ?>" value="3">Hủy đơn</option>
+										<?php
+									} else if ($ord->order_status == 2) {
+										?>
+										<option id="<?php echo $ord->order_code ?>" value="0">Xử lý đơn hàng</option>
+										<option selected id="<?php echo $ord->order_code ?>" value="2">Đơn hàng đã được xử lý - Đang giao hàng
+										</option>
+										<option id="<?php echo $ord->order_code ?>" value="3">Hủy đơn</option>
+										<?php
+									} else {
+										?>
+										<option id="<?php echo $ord->order_code ?>" value="0">Xử lý đơn hàng</option>
+										<option id="<?php echo $ord->order_code ?>" value="2">Đơn hàng đã được xử lý - Đang giao hàng
+										</option>
+										<option selected id="<?php echo $ord->order_code ?>" value="3">Hủy đơn</option>
+										<?php
+									}
+									?>
+								</select>
+							</td>
+						</tr>
 						</tbody>
 					</table>
 				</div>

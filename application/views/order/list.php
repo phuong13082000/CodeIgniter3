@@ -47,7 +47,7 @@
 									?>
 								</td>
 								<td>
-									<a onclick="return confirm('Are you sure?')" href="<?php echo base_url('order/delete/' . $ord->id) ?>" class="btn btn-danger">Delete</a>
+									<a onclick="return confirm('Are you sure?')" href="<?php echo base_url('order/delete/' . $ord->order_code) ?>" class="btn btn-danger">Delete</a>
 									<a href="<?php echo base_url('order/view/' . $ord->order_code) ?>" class="btn btn-warning">View</a>
 								</td>
 							</tr>

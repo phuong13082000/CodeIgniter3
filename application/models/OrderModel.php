@@ -13,11 +13,33 @@ class OrderModel extends CI_Model
 
 	public function selectOrderDetails($order_code)
 	{
-		$query = $this->db->select('order_details.quantity as qty, order_details.order_code, order_details.product_id, product.*')
+		$query = $this->db->select('orders.order_code,
+		 orders.status as order_status,
+		  order_details.quantity as qty,
+		   order_details.order_code,
+		    order_details.product_id,
+		     product.*')
 			->from('order_details')
 			->join('product', 'order_details.product_id=product.id')
-			->where('order_code', $order_code)
+			->join('orders', 'orders.order_code=order_details.order_code')
+			->where('order_details.order_code', $order_code)
 			->get();
 		return $query->result();
+	}
+
+	public function deleteOrder($order_code)
+	{
+		return $this->db->delete('orders', ['order_code' => $order_code]);
+	}
+
+	public function deleteOrderDetails($order_code)
+	{
+		$this->db->where_in('order_code', $order_code);
+		return $this->db->delete('order_details');
+	}
+
+	public function updateOrder($data, $order_code)
+	{
+		return $this->db->update('orders', $data, ['order_code' => $order_code]);
 	}
 }
