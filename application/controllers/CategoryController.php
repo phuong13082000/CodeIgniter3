@@ -18,6 +18,7 @@ class CategoryController extends CI_Controller
 	public function index()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'List Category';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -31,6 +32,7 @@ class CategoryController extends CI_Controller
 	public function create()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'Create Category';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -83,6 +85,7 @@ class CategoryController extends CI_Controller
 	public function edit($id)
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'Edit Category';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 

@@ -18,6 +18,7 @@ class BrandController extends CI_Controller
 	public function index()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'List Brand';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -31,6 +32,7 @@ class BrandController extends CI_Controller
 	public function create()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'Create Brand';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -84,6 +86,7 @@ class BrandController extends CI_Controller
 	public function edit($id)
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'Edit Brand';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 

@@ -66,6 +66,17 @@ class IndexModel extends CI_Model
 		return $title = $result->title;
 	}
 
+	public function getProductTitle($id)
+	{
+		$this->db->select('product.*');
+		$this->db->from('product');
+		$this->db->limit(1);
+		$this->db->where('product.id', $id);
+		$query = $this->db->get();
+		$result = $query->row();
+		return $title = $result->title;
+	}
+
 	public function getProductDetails($id)
 	{
 		$query = $this->db->select('category.title as tendanhmuc, product.*, brand.title as tenthuonghieu')

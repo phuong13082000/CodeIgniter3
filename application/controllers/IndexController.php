@@ -18,7 +18,9 @@ class IndexController extends CI_Controller
 		$this->data['allProduct'] = $this->IndexModel->getAllProduct();
 		$this->load->view('pages/template/header', $this->data);
 		$this->load->view('pages/template/navbar', $this->data);
+
 		$this->load->view('pages/layout', $this->data);
+
 		$this->load->view('pages/template/footer');
 	}
 
@@ -26,9 +28,13 @@ class IndexController extends CI_Controller
 	{
 		$this->data['categoryProduct'] = $this->IndexModel->getCategoryProduct($id);
 		$this->data['title'] = $this->IndexModel->getCategoryTitle($id);
+		$this->config->config['pageTitle'] = $this->data['title'];
+
 		$this->load->view('pages/template/header', $this->data);
 		$this->load->view('pages/template/navbar', $this->data);
+
 		$this->load->view('pages/category', $this->data);
+
 		$this->load->view('pages/template/footer');
 	}
 
@@ -36,26 +42,38 @@ class IndexController extends CI_Controller
 	{
 		$this->data['brandProduct'] = $this->IndexModel->getBrandProduct($id);
 		$this->data['title'] = $this->IndexModel->getBrandTitle($id);
+		$this->config->config['pageTitle'] = $this->data['title'];
+
 		$this->load->view('pages/template/header', $this->data);
 		$this->load->view('pages/template/navbar', $this->data);
+
 		$this->load->view('pages/brand', $this->data);
+
 		$this->load->view('pages/template/footer');
 	}
 
 	public function product($id)
 	{
 		$this->data['product_details'] = $this->IndexModel->getProductDetails($id);
+		$this->data['title'] = $this->IndexModel->getProductTitle($id);
+		$this->config->config['pageTitle'] = $this->data['title'];
+
 		$this->load->view('pages/template/header', $this->data);
 		$this->load->view('pages/template/navbar', $this->data);
+
 		$this->load->view('pages/product-details', $this->data);
+
 		$this->load->view('pages/template/footer');
 	}
 
 	public function cart()
 	{
+		$this->config->config['pageTitle'] = 'Cart';
 		$this->load->view('pages/template/header', $this->data);
 		$this->load->view('pages/template/navbar', $this->data);
+
 		$this->load->view('pages/cart');
+
 		$this->load->view('pages/template/footer');
 	}
 
@@ -112,6 +130,7 @@ class IndexController extends CI_Controller
 
 	public function checkout()
 	{
+		$this->config->config['pageTitle'] = 'Checkout';
 		//đăng nhập
 		//có hàng hóa trong giỏ hàng
 		if ($this->session->userdata('LoggedInCustomer') && $this->cart->contents()) {
@@ -126,6 +145,7 @@ class IndexController extends CI_Controller
 
 	public function login()
 	{
+		$this->config->config['pageTitle'] = 'Login';
 		$this->load->view('pages/template/header', $this->data);
 		$this->load->view('pages/template/navbar', $this->data);
 		$this->load->view('pages/login');
@@ -269,6 +289,4 @@ class IndexController extends CI_Controller
 			$this->checkout();
 		}
 	}
-
-
 }

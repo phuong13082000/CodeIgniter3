@@ -25,3 +25,5 @@ third-party / plugin
 	backend bootstrap 5
 	frontend bootstrap 3
 	changeToSlug (script)
+
+database chỉnh trong application/config/...

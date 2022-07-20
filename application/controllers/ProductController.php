@@ -18,6 +18,7 @@ class ProductController extends CI_Controller
 	public function index()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'List Product';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -31,6 +32,7 @@ class ProductController extends CI_Controller
 	public function create()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'Create Product';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -96,6 +98,7 @@ class ProductController extends CI_Controller
 	public function edit($id)
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'Edit Product';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 

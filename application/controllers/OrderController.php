@@ -18,6 +18,7 @@ class OrderController extends CI_Controller
 	public function index()
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'List Order';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
@@ -31,6 +32,7 @@ class OrderController extends CI_Controller
 	public function view($order_code)
 	{
 		$this->checkLogin();
+		$this->config->config['pageAdmin'] = 'View Order Details';
 		$this->load->view('admin_template/header');
 		$this->load->view('admin_template/navbar');
 
