@@ -51,6 +51,13 @@
 					</div>
 				</div>
 
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Order</a>
+					<div class="dropdown-menu bg-transparent border-0">
+						<a href="<?php echo base_url('order/list') ?>" class="dropdown-item">List</a>
+					</div>
+				</div>
+
 			</div>
 		</nav>
 	</div>

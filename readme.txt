@@ -2,22 +2,26 @@ backend
 	crud brand
 	crud category
 	crud product
-	login/register
+	list order, view order detail
+	login
 
 frontend
-	login/register
+	login
+	register
 	404
-	blog/single-blog
+	blog
+	single-blog
 	cart
 	checkout
 	contact-us
-	product/product-details
+	product
+	product-details
 	shop
 	send-email
 
 third-party / plugin
-	ckeditor 4.19.0
+	ckeditor 4.19.0 (script)
 	jQuery 3.4.1
 	backend bootstrap 5
 	frontend bootstrap 3
-	changeToSlug
+	changeToSlug (script)

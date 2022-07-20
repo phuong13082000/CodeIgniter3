@@ -244,7 +244,7 @@ class IndexController extends CI_Controller
 				$data_order = array(
 					'order_code' => $order_code,
 					'shipping_id' => $result,
-					'status' => 1,
+					'status' => 1
 				);
 				$insert_order = $this->LoginModel->insert_order($data_order);
 

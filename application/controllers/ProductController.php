@@ -182,5 +182,7 @@ class ProductController extends CI_Controller
 		$this->session->set_flashdata('success', 'Delete Success Product');
 		redirect(base_url('product/list'));
 	}
+
+
 }
 

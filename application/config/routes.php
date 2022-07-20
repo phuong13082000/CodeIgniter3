@@ -58,3 +58,7 @@ $route['delete-all-cart']['GET'] = 'IndexController/delete_all_cart';
 $route['checkout']['GET'] = 'IndexController/checkout';
 $route['confirm-checkout']['POST'] = 'IndexController/confirm_checkout';
 
+//order
+$route['order/list']['GET'] = 'OrderController/index';
+$route['order/view/(:any)']['GET'] = 'OrderController/view/$1';
+
