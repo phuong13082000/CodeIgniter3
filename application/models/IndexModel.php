@@ -100,6 +100,17 @@ class IndexModel extends CI_Model
 			->get();
 		return $query->result();
 	}
+
+	public function getProductByKeyWord($keyword)
+	{
+		$query = $this->db->select('category.title as tendanhmuc, product.*, brand.title as tenthuonghieu')
+			->from('category')
+			->join('product', 'product.category_id=category.id')
+			->join('brand', 'brand.id=product.brand_id')
+			->like('product.title', $keyword)
+			->get();
+		return $query->result();
+	}
 }
 
 

@@ -289,4 +289,21 @@ class IndexController extends CI_Controller
 			$this->checkout();
 		}
 	}
+
+	public function tim_kiem()
+	{
+		if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
+			$keyword = $_GET['keyword'];
+		}
+		$this->data['product'] = $this->IndexModel->getProductByKeyWord($keyword);
+		$this->data['title'] = $keyword;
+		$this->config->config["pageTitle"] = $keyword;
+
+		$this->load->view('pages/template/header', $this->data);
+		$this->load->view('pages/template/navbar', $this->data);
+
+		$this->load->view('pages/timkiem');
+		$this->load->view('pages/template/footer');
+	}
+
 }

@@ -40,7 +40,9 @@
 							<?php
 							if ($this->session->userdata('LoggedInCustomer')) {
 								?>
-								<li><a href="/tai-khoan"><i class="fa fa-user"></i> Account</a><?php echo $this->session->userdata('LoggedInCustomer')['username'] ?></li>
+								<li><a href="/tai-khoan"><i class="fa fa-user"></i>
+										Account</a><?php echo $this->session->userdata('LoggedInCustomer')['username'] ?>
+								</li>
 								<li><a href="/wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="<?php echo base_url('/checkout') ?>"><i class="fa fa-crosshairs"></i>Checkout</a>
 								</li>
@@ -67,7 +69,7 @@
 	<div class="header-bottom"><!--header-bottom-->
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-7">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
@@ -103,9 +105,12 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-5">
 					<div class="search_box pull-right">
-						<input type="text" placeholder="Search"/>
+						<form method="GET" autocomplete="off" action="<?php echo base_url('tim-kiem') ?>">
+							<input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..."/>
+							<input type="submit" name="timkiem" value="Tìm kiếm" class="btn btn-default"/>
+						</form>
 					</div>
 				</div>
 			</div>

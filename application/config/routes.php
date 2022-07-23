@@ -10,6 +10,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['danh-muc/(:any)']['GET'] = 'IndexController/category/$1';
 $route['thuong-hieu/(:any)']['GET'] = 'IndexController/brand/$1';
 $route['san-pham/(:any)']['GET'] = 'IndexController/product/$1';
+$route['tim-kiem']['GET'] = 'IndexController/tim_kiem';
 
 //login user
 $route['dang-nhap']['GET'] = 'IndexController/login';
